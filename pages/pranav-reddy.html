@@ -126,36 +126,6 @@
     </footer>
 </div>
 
-<script>
-    async function populateThemeDropdown() {
-        try {
-            const themeSelect = document.getElementById("theme-select");
-            const response = await fetch("../themes_list.txt");
-            const data = await response.text();
-            const themeFiles = data.split("\n");
-
-            themeFiles.forEach((themeFileName) => {
-                const trimmedFileName = themeFileName.trim();
-                if (trimmedFileName !== "") {
-                    const option = new Option(trimmedFileName, `../themes/${trimmedFileName}`);
-                    themeSelect.appendChild(option);
-                }
-            });
-        } catch (error) {
-            console.error("Error fetching theme list:", error);
-        }
-    }
-
-    populateThemeDropdown();
-
-    function changeTheme() {
-        const selectedValue = document.getElementById("theme-select").value;
-        if (selectedValue !== "") {
-            document.getElementById("theme-style").href = selectedValue;
-        }
-    }
-
-    document.getElementById("theme-select").addEventListener("change", changeTheme);
-</script>
+<script src="../themeswitcher.js"></script>
 </body>
 </html>
